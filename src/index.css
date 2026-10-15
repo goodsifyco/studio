@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  color-scheme: light;
+  background-color: #F7F6F2;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle warm architectural grid background */
+.bg-warm-grid {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(17, 17, 16, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 17, 16, 0.035) 1px, transparent 1px);
+}
+
+/* Clean minimal scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F6F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4CFBF;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B8B2A2;
+}
+
+/* Featured plan focus pulse */
+.plan-glow {
+  box-shadow: 0 10px 30px -5px rgba(29, 78, 216, 0.12), 0 0 0 1px rgba(29, 78, 216, 0.35);
+}
+
+/* ============================================================================
+ * TOAST NOTIFICATION ENTRANCE & ACCENT ANIMATIONS
+ * ============================================================================ */
+@keyframes toastEntrance {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0) scale(0.94);
+    filter: blur(4px);
+  }
+  65% {
+    opacity: 1;
+    transform: translate3d(0, -3px, 0) scale(1.015);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes toastIconBurst {
+  0% {
+    transform: scale(0.4) rotate(-20deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.22) rotate(4deg);
+    opacity: 1;
+  }
+  85% {
+    transform: scale(0.96) rotate(-1deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes toastPulseRing {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes toastShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(180%);
+  }
+}
+
+@keyframes toastCountdown {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.animate-toast-entrance {
+  animation: toastEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-toast-icon {
+  animation: toastIconBurst 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-toast-ring {
+  animation: toastPulseRing 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.animate-toast-shimmer {
+  animation: toastShimmer 1.8s ease-in-out forwards;
+}
+
